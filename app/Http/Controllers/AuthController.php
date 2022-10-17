@@ -39,8 +39,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
-//            'password' => ['required', 'confirmed', Password::min(10)->mixedCase()->numbers()->symbols()],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'confirmed', Password::min(10)->mixedCase()->numbers()->symbols()],
             'password_confirmation' => ['required']
         ]);
 
@@ -62,8 +61,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email', 'exists:users,email'],
-//            'password' => ['required', 'confirmed', Password::min(10)->mixedCase()->numbers()->symbols()],
-            'password' => ['required', 'confirmed'],
+            'password' => ['required', 'confirmed', Password::min(10)->mixedCase()->numbers()->symbols()],
             'password_confirmation' => ['required']
         ]);
 

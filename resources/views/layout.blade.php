@@ -8,7 +8,7 @@
     <meta name="generator" content="Hugo 0.104.2">
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;

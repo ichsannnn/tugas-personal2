@@ -26,6 +26,7 @@
             <input type="password" class="form-control" id="floatingPassword" name="password">
             <label for="floatingPassword">Password</label>
         </div>
+        <div class="mb-2 g-recaptcha" data-sitekey="6LeM_YciAAAAAKvMbX3vaK8PsUU8kEZ9IQeDIiSs"></div>
         <div class="mb-3 text-end">
             <a href="{{ route('forgot') }}">Reset Password</a>
         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
@@ -21,6 +22,16 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+
+        $response_string = $request->input('g-recaptcha-response');
+        $user_ip = $request->ip();
+
+        $site_url = "https://www.google.com/recaptcha/api/siteverify?secret=6LeM_YciAAAAAMIT3HiqCT3SuQtHyBZtZC0jiH9G&response=$response_string&remoteip=$user_ip";
+        $verify = Http::get($site_url);
+        $response = $verify->object();
+        if (!$response->success) {
+            return to_route('login')->with('error', 'Captcha error. Please try again.')->withInput();
+        }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return to_route('home');

@@ -49,7 +49,11 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return to_route('home');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return to_route('home');
+        }
+
+        return to_route('login');
     }
 
     public function forgot()
